@@ -26,7 +26,10 @@ function parseCSV(text) {
 
     if (lines.length === 0) return [];
 
-    return lines.map(line => {
+    // 跳过第一行标题
+    const dataLines = lines.slice(1);
+
+    return dataLines.map(line => {
         const values = line.split(',').map(value => value.trim());
         if (values.length === 2) {
             // 两列的当作 namelist
