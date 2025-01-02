@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>幸运抽奖系统</title>
+  <link rel="stylesheet" href="./style.css">
+  <!-- 引入非模块化的 Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- 引入 CSS2DRenderer -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><span>当前奖项：</span><span><input id="current-prize" type="text" value="一等奖" aria-label="当前奖项" placeholder="请输入奖项名称"></span></h1>
+      <div class="config-icon">
+        <button id="config-btn">⚙️</button>
+        <div id="config-menu" class="hidden">
+          <ul>
+            <li>
+              <label for="upload-namelist">上传用户名单：</label>
+              <input type="file" id="upload-namelist" accept=".csv" aria-label="上传用户名单">
+            </li>
+            <li>
+              <button id="download-winnerlist">下载中奖名单</button>
+            </li>
+            <li>
+              <button id="download-namelist-template">下载名单模板</button>
+            </li>
+          </ul>
+          <hr>
+          <ul>
+            <li>
+              <label for="upload-background">上传背景图：</label>
+              <input type="file" id="upload-background" accept="image/*" aria-label="上传背景图">
+            </li>
+            <li>
+              <label for="background-url">背景图 URL：</label>
+              <input type="text" id="background-url" placeholder="输入背景图 URL" aria-label="背景图 URL">
+              <button id="set-background-url">设置背景图</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="canvas-container"></div>
+    <div class="controls">
+      <button id="start-btn">开始抽奖</button>
+      <button id="stop-btn" disabled>停止</button>
+      <button id="reset-btn">重置</button>
+    </div>
+    <div id="winner-display" class="hidden">
+      <h1>中奖者：<span id="winner-name"></span></h1>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

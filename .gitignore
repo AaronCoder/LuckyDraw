@@ -1,0 +1,33 @@
+# 忽略 node_modules
+node_modules/
+
+# 忽略打包生成的可执行文件
+lucky-draw
+lucky-draw.exe
+
+# 忽略日志文件
+*.log
+
+# 忽略依赖锁文件
+package-lock.json
+
+# 忽略临时文件
+.DS_Store
+Thumbs.db
+
+# 忽略 IDE 配置文件
+.vscode/
+.idea/
+*.iml
+
+# 忽略打包生成的文件
+dist/
+
+# 忽略测试文件
+test/
+
+# 忽略可执行文件
+.exe
+
+# 忽略txt文件
+*.txt

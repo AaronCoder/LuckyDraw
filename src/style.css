@@ -1,0 +1,205 @@
+/* 全局样式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #000000; /* 默认背景为黑色 */
+    color: white;
+    overflow: hidden; /* 防止页面滚动 */
+    background-image: url('../data/bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 60vh;
+    position: relative; /* 确保 CSS2DRenderer 的定位正确 */
+    overflow: hidden; /* 防止内容溢出 */
+    display: flex; /* 确保内容居中 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    background: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 添加阴影 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    -webkit-backdrop-filter: blur(10px); /* 兼容 Safari */
+    border-radius: 10px; /* 圆角效果 */
+    margin: 0 auto; /* 确保画布居中 */
+}
+
+.name-label {
+    background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+    border-radius: 5px; /* 圆角 */
+    padding: 5px 10px; /* 内边距 */
+    font-size: 14px; /* 字体大小 */
+    color: black; /* 字体颜色 */
+    text-align: center; /* 居中对齐文字 */
+    white-space: nowrap; /* 防止文字换行 */
+    pointer-events: none; /* 禁止鼠标事件，避免影响交互 */
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+#winner-display {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: gold;
+}
+
+.hidden {
+    display: none; /* 默认隐藏 */
+}
+
+/* 配置菜单样式 */
+.config-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#config-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#config-menu {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: block; /* 默认隐藏 */
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000; /* 确保在最上层 */
+    max-width: 90%; /* 限制最大宽度为屏幕宽度的 90% */
+    width: 400px; /* 默认宽度 */
+    min-width: 300px; /* 设置最小宽度，避免过窄 */
+    box-sizing: border-box; /* 包括内边距和边框 */
+    overflow: auto; /* 当内容超出时显示滚动条 */
+}
+
+#config-menu.hidden {
+    display: none; /* 隐藏时设置为不可见 */
+}
+
+#config-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#config-menu li {
+    margin-bottom: 10px;
+}
+
+#config-menu label {
+    color: white;
+}
+
+#config-menu input[type="file"],
+#config-menu input[type="text"] {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+#config-menu button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#config-menu button:hover {
+    background: #0056b3;
+}
+
+#config-menu hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 15px 0;
+}
+
+/* 当前奖项输入框样式 */
+#current-prize {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#current-prize:focus {
+    border-color: yellow;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    #config-menu {
+        width: 90%; /* 在小屏幕上占据 90% 的宽度 */
+        right: 5%; /* 居中显示 */
+        top: 20px; /* 调整顶部间距 */
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
